@@ -7,17 +7,21 @@ public class RegistroOperacao {
 	private float valor;
 	private Date data;
 	
-	public RegistroOperacao(String op, float v) {
-		operacao = op;
-		valor = v;
-		data = new Date();
+	public RegistroOperacao(String operacao, float valor) {
+		this.operacao = operacao;
+		this.valor = valor;
+		this.data = new Date();
 	}
 	
 	public String exibir() {
-		return operacao + " R$ " + valor + "   " +  data;
+		return this.operacao + " R$ " + this.valor + "   " +  this.data;
 	}
 	
 	public int consultarMes() {
-		return data.getMonth() + 1;
+		return this.data.getMonth() + 1;
+	}
+	
+	public Date getData() {
+		return this.data;
 	}
 }

@@ -4,7 +4,10 @@ public class ContaEspecial extends ContaCorrente{
 
 	public ContaEspecial(String id, float saldo) {
 		super(id, saldo);
-		// TODO Auto-generated constructor stub
+	}
+	
+	public void rendimentoMensal(float taxa) {
+		setSaldo(getSaldo() + getSaldo()*taxa);
 	}
 	
 }

@@ -8,12 +8,12 @@ public class Endereco {
 	private String municipio;
 	private String uf;
 	
-	/*public Endereco(String log, String num, String c, String b, String mun, String u) {
-		logradouro = log;
-		numero = num;
-		cep = c;
-		bairro = b;
-		municipio = mun;
-		uf = u;
-	}*/
+	public Endereco(String logradouro, String numero, String cep, String bairro, String municipio, String uf) {
+		this.logradouro = logradouro;
+		this.numero = numero;
+		this.cep = cep;
+		this.bairro = bairro;
+		this.municipio = municipio;
+		this.uf = uf;
+	}
 }

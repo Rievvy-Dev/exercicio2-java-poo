@@ -9,9 +9,10 @@ public class Agencia {
 	private int totalContas = 0;
 	private int totalFuncionarios = 0;
 	
-	public Agencia(String nome, String id) {
+	public Agencia(String nome, String id, Endereco endereco) {
 		this.nome = nome;
 		this.id = id;
+		this.endereco = endereco;
 	}
 	public void adcionarConta(Conta conta) {
 		this.contas[totalContas++] = conta;
@@ -30,5 +31,13 @@ public class Agencia {
 	
 	protected String getNome() {
 		return this.nome;
+	}
+	
+	protected Conta[] getContas() {
+		return this.contas;
+	}
+	
+	protected Funcionario[] getFuncionarios() {
+		return this.funcionarios;
 	}
 }

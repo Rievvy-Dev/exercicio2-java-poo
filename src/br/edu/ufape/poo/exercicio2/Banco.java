@@ -4,11 +4,13 @@ public class Banco {
 	private String nome;
 	private Agencia[] agencias = new Agencia[20];
 	private Cliente[] clientes = new Cliente[200];
+	private Endereco endereco;
 	private int totalAgencias = 0;
 	private int totalClientes = 0;
 	
-	public Banco(String n) {
+	public Banco(String n, Endereco endereco) {
 		this.nome = n;
+		this.endereco = endereco;
 	}
 	public void cadastrarAgência(Agencia agencia) {
 		this.agencias[totalAgencias++] = agencia;

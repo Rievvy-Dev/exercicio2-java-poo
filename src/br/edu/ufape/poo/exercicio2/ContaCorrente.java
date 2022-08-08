@@ -1,5 +1,7 @@
 package br.edu.ufape.poo.exercicio2;
 
+
+
 public class ContaCorrente extends Conta{
 	private float tarifa;
 	private float limiteCredito;
@@ -7,25 +9,33 @@ public class ContaCorrente extends Conta{
 	
 	public ContaCorrente(String id, float saldo) {
 		super(id, saldo);
+		this.tarifa = 0.02f;
 	}
+	
 	public boolean debitar(float valor) {
 		saldoNegativo = getSaldo() - valor;
-		if(getSaldo() >= valor) {
+		if(getSaldo() >= valor || this.limiteCredito >= Math.abs(saldoNegativo)) {
 			setSaldo(getSaldo() - valor);
+			registrarMovimentacao(new RegistroOperacao("Debitar", valor));
 			return true;
-		} else if (this.limiteCredito >= saldoNegativo) {
-			setSaldo(0);
-			this.limiteCredito += saldoNegativo;
-			return true;
-		}
+		} 
 		return false;
 	}
+	
 	public void acrescentarLimite(float valor) {
 		this.limiteCredito += valor;
 	}
+	
 	public boolean pagamento(float valor, String codigo) {
-		this.debitar(valor);
-		return true;
+		if(this.debitar(valor)) {
+			registrarMovimentacao(new RegistroOperacao("Pagamento", valor));
+			return true; 
+			}
+		return false;
+	}
+	
+	public void tarifa(float saldo, float tarifa) {
+		saldo = saldo*tarifa;
 	}
 	
 }

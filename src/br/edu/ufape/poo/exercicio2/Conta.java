@@ -1,12 +1,12 @@
 package br.edu.ufape.poo.exercicio2;
 
 import java.util.Arrays;
+import java.util.Date;
 
 public abstract class Conta {
 	private String id;
 	private float saldo;
 	private boolean ativo;
-	private Cliente[] clientes = new Cliente[10];
 	private RegistroOperacao[] registros = new RegistroOperacao[200];
 	private Titularidade[] titularidades = new Titularidade[10];
 	private int totalRegistros = 0;
@@ -18,12 +18,14 @@ public abstract class Conta {
 	}
 	
 	public void creditar(float valor) {
+		registrarMovimentacao(new RegistroOperacao("Creditar", valor));
 		saldo += valor;
 	}
 	
 	public boolean transferir(float valor, Conta c) {
 		if(this.debitar(valor)) {
 			c.creditar(valor);
+			registrarMovimentacao(new RegistroOperacao("Transição", valor));
 			return true;
 		} 
 		return false;
@@ -44,6 +46,15 @@ public abstract class Conta {
 				.toArray(RegistroOperacao[]::new);
 
 			return retorno; 
+	}
+	
+	public RegistroOperacao[] extratoPeriodo(Date de, Date ate) {
+		RegistroOperacao[] retorno = Arrays.stream(this.registros)
+				.filter(r -> r != null)
+				.filter(r -> r.getData().after(de) && r.getData().before(ate))
+				.toArray(RegistroOperacao[]::new);
+				
+			return retorno;
 	}
 	
 	protected float getSaldo() {
